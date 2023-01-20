@@ -1,0 +1,110 @@
+---
+title: 'Estadística Descriptiva: Exploración de una Base de Datos (BD) en Microsoft Excel usando R'
+author: 
+- Rafael E. Borges, borgesr@gmail.com, Profesor Titular, Escuela de Estadística, Universidad de Los Andes (ULA), Mérida, Venezuela.
+date: ""
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  word_document: default
+---
+
+# Introducción
+
+En este cuaderno, veremos como hacer una exploración ráoida de la base de datos, que en algunos casos ayuda a aclarar la dimensión del análisis que se desea hacer.
+
+Para ello vamos a utilizar una base de datos en formato Microsoft Excel que contiene la información de seis variables (Edad, Sexo Peso (en Kgs.), Estatura (en cms.), Estado Civil y Lugar de Nacimiento) de 50 trabajadotres de una empresa con sede en Caracas, Venezuela (ejemplo académico), que está disponible en un proyecto de GitHub sobre Estadística Descriptiva usando R, que se puede acceder a través de este [enlace](https://github.com/borgesre/Estadistica-Descriptiva-usando-R), donde también están disponibles los códigos de los distitos Rmarkdowns para generar las salidas correspondientes.
+
+# Análisis (Solución usando R)
+
+Si desea replicar este ejercicio, lo primero que tiene que hacer es descargar la base de datos "EjemploEstDesc.xlsx" y el archivo de Rmarkdown "EstDesc_1_ExploraciónBD.Rmd", y colocarlos en una carpeta, que es la carpeta que deben colocar como carpeta de trabajo una vez ejecuten su sesión de R en RStudio.
+
+## Cargas de paquetes:
+
+Para llevar a cabo el análisis, se deben cargar una serie de paquetes, en este ejemplo, usaremos el paquete *readxl* para la lectura de la base de datos en Microsoft Excel, *DataExplorer*, que contiene la mayoría de las funciones que se usarán para explorar la BD, y *xtable* que permite la construcción de tablas en un formato más visual en páginas web.
+
+```{r}
+library(readxl)  # Para leer archivos de Microsoft Excel
+library(DataExplorer)   # Para explorar la Base de Datos
+library(xtable)   # Para generar tablas en mejor resolución
+```
+
+## Lectura de la base de datos:
+
+Una vez que se han cargado los paquetes, podemos comenzar con el análisis de los datos, y lo primero que tenemos que hacer es leer la base de datos, lo cual lo hacemos con la función *read_xlsx*.
+
+Una recomendación útil es, espacialmente si estos datos se van a utilizar en varios procedimientos, que se le asigne un nombre, como en este caso, en el cual le hemos asignado el nombre de datos.
+
+```{r}
+datos <- read_xlsx("EjemploEstDesc.xlsx")
+```
+
+## Exploración incicial de la BD:
+
+Esta exploración la hacemoss con la función genérica *summary*, que nos permite una primera aproximación a los datos, porque se obtiene una serie de estadísticas descriptivas básicas (mínimo, primer cuartil, mediana, ,media, tercer cuartil y máximo) para cada una de las variables cuantitativas, e identificar las variables cualitativas.
+
+```{r}
+summary(datos)
+```
+
+## Tablas (de fecuencias) de las variables cualitativas
+
+Para poder visualizar las tablas de frecuencias para las variables cualitativas, se recomienda usar la función *xtable* del paquete que lleva el mismo nombre.
+
+Tabla de frecuencias para Sexo:
+
+```{r}
+xtable(table(datos$Sexo))
+
+```
+
+Tabla de frecuencias para Estado Civil:
+
+```{r}
+xtable(table(datos$EstCivil))
+```
+
+Tabla de frecuencias para Lugar de Nacimiento:
+
+```{r}
+xtable(table(datos$LugNac))
+```
+
+## Exploración de la BD con DataExplorer
+
+El paquete *DataExplorer* comtiene una serie de funciones que permite explorar rápidamente una base de datos, pero hay que advertir, que como hace el mismo procedimiento para todas las variables del mismo tipo, las representaciones no suelen ser las "más bonitas", por lo que se recomienda hacer gráficos de mejor resolución usando las funciones básicas del paquete de la base de R *graphic* o, mejor aún, las facilidades que están disponibles en el paquete *ggplot2*.
+
+Veamos algunas funciones útiles de *DataExplorer*:
+
+Para la visualización de la estructura de la base de datos usamos la función *plot_str*:
+
+```{r fig.height=3, fig.width=5}
+plot_str(datos)
+```
+
+Para visualizar el uso de memoria de cada variable se usa la función *plot_intro*:
+
+```{r}
+plot_intro(datos)
+```
+
+Para visualizar la presencia de datos fatantes en cada variable se usa la función *plot_missing*:
+
+```{r}
+plot_missing(datos)
+```
+
+
+Para obtener los gráficos de barras de todas variables cualitativas de la base de datos usamos la función *plot_bar*:
+
+```{r}
+plot_bar(datos)
+```
+
+Finalmente, Para obtener los gráficos de funciones de densidad y los histogramas de todas variables cuantitativas de la base de datos usamos, las funciones *plot_density* y *plot_histogram*, respectivamente:
+
+```{r}
+plot_density(datos)
+plot_histogram(datos)
+```
