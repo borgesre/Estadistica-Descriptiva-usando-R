@@ -12,9 +12,9 @@ output:
 
 # Introducción
 
-En este cuaderno, veremos como hacer una exploración ráoida de la base de datos, que en algunos casos ayuda a aclarar la dimensión del análisis que se desea hacer.
+En este cuaderno, veremos como hacer una exploración rápida de la base de datos, que en algunos casos ayuda a aclarar la dimensión del análisis que se desea hacer.
 
-Para ello vamos a utilizar una base de datos en formato Microsoft Excel que contiene la información de seis variables (Edad, Sexo Peso (en Kgs.), Estatura (en cms.), Estado Civil y Lugar de Nacimiento) de 50 trabajadotres de una empresa con sede en Caracas, Venezuela (ejemplo académico), que está disponible en un proyecto de GitHub sobre Estadística Descriptiva usando R, que se puede acceder a través de este [enlace](https://github.com/borgesre/Estadistica-Descriptiva-usando-R), donde también están disponibles los códigos de los distitos Rmarkdowns para generar las salidas correspondientes.
+Para ello vamos a utilizar una base de datos en formato Microsoft Excel que contiene la información de seis variables (Edad, Sexo Peso (en Kgs.), Estatura (en cms.), Estado Civil y Lugar de Nacimiento) de 50 trabajadotres de una empresa con sede en Caracas, Venezuela (ejemplo académico), que está disponible en el repositorio de GitHub sobre Estadística Descriptiva usando R, que se puede acceder a través de este [enlace](https://github.com/borgesre/Estadistica-Descriptiva-usando-R), donde también están disponibles los códigos de los distitos Rmarkdowns para generar las salidas correspondientes.
 
 # Análisis (Solución usando R)
 
